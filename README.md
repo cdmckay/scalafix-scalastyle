@@ -36,6 +36,8 @@ Implemented rules:
 - `FileLengthChecker`
 - `NoCloneChecker`
 - `SimplifyBooleanExpressionChecker`
+- `ClassNamesChecker`
+- `ObjectNamesChecker`
 
 Each implemented rule has:
 
@@ -208,6 +210,34 @@ Flags boolean expressions such as `b == true`, `b && false`, and `!true` which c
 rules = [
   SimplifyBooleanExpressionChecker
 ]
+```
+
+### ClassNamesChecker
+
+Flags class names that do not match a configured regex.
+
+`.scalafix.conf`:
+
+```hocon
+rules = [
+  ClassNamesChecker
+]
+
+ClassNamesChecker.regex = "^[A-Z][A-Za-z]*$"
+```
+
+### ObjectNamesChecker
+
+Flags object names that do not match a configured regex.
+
+`.scalafix.conf`:
+
+```hocon
+rules = [
+  ObjectNamesChecker
+]
+
+ObjectNamesChecker.regex = "^[A-Z][A-Za-z]*$"
 ```
 
 ## Repository Layout

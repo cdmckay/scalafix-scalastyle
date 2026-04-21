@@ -8,3 +8,5 @@ fix.ParameterNumberChecker
 fix.FileLengthChecker
 fix.NoCloneChecker
 fix.SimplifyBooleanExpressionChecker
+fix.ClassNamesChecker
+fix.ObjectNamesChecker
