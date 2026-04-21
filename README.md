@@ -58,8 +58,6 @@ Current limitation:
 
 Flags `???` placeholders.
 
-`.scalafix.conf`:
-
 ```hocon
 rules = [
   NotImplementedErrorUsage
@@ -82,8 +80,6 @@ Examples that are not flagged:
 - `s"$foo bar"`
 - `raw"foo"`
 
-`.scalafix.conf`:
-
 ```hocon
 rules = [
   EmptyInterpolatedStringChecker
@@ -100,8 +96,6 @@ Examples that are allowed:
 - `case s: Int => ...`
 - `case List(x, y) => ...`
 
-`.scalafix.conf`:
-
 ```hocon
 rules = [
   LowercasePatternMatchChecker
@@ -111,8 +105,6 @@ rules = [
 ### IllegalImportsChecker
 
 Flags imports that match configured forbidden import prefixes.
-
-`.scalafix.conf`:
 
 ```hocon
 rules = [
@@ -133,8 +125,6 @@ Current limitation:
 
 Flags methods whose body length exceeds a configured maximum.
 
-`.scalafix.conf`:
-
 ```hocon
 rules = [
   MethodLengthChecker
@@ -149,8 +139,6 @@ MethodLengthChecker.ignoreEmpty = false
 
 Flags methods whose cyclomatic complexity exceeds a configured maximum.
 
-`.scalafix.conf`:
-
 ```hocon
 rules = [
   CyclomaticComplexityChecker
@@ -164,8 +152,6 @@ CyclomaticComplexityChecker.countCases = true
 
 Flags methods whose parameter count exceeds a configured maximum.
 
-`.scalafix.conf`:
-
 ```hocon
 rules = [
   ParameterNumberChecker
@@ -177,8 +163,6 @@ ParameterNumberChecker.maxParameters = 8
 ### FileLengthChecker
 
 Flags files whose total line count exceeds a configured maximum.
-
-`.scalafix.conf`:
 
 ```hocon
 rules = [
@@ -192,8 +176,6 @@ FileLengthChecker.maxFileLength = 800
 
 Flags zero-argument `clone()` methods.
 
-`.scalafix.conf`:
-
 ```hocon
 rules = [
   NoCloneChecker
@@ -204,8 +186,6 @@ rules = [
 
 Flags boolean expressions such as `b == true`, `b && false`, and `!true` which can be simplified.
 
-`.scalafix.conf`:
-
 ```hocon
 rules = [
   SimplifyBooleanExpressionChecker
@@ -215,8 +195,6 @@ rules = [
 ### ClassNamesChecker
 
 Flags class names that do not match a configured regex.
-
-`.scalafix.conf`:
 
 ```hocon
 rules = [
@@ -229,8 +207,6 @@ ClassNamesChecker.regex = "^[A-Z][A-Za-z]*$"
 ### ObjectNamesChecker
 
 Flags object names that do not match a configured regex.
-
-`.scalafix.conf`:
 
 ```hocon
 rules = [
