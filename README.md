@@ -34,6 +34,8 @@ Implemented rules:
 - `CyclomaticComplexityChecker`
 - `ParameterNumberChecker`
 - `FileLengthChecker`
+- `NoCloneChecker`
+- `SimplifyBooleanExpressionChecker`
 
 Each implemented rule has:
 
@@ -182,6 +184,30 @@ rules = [
 ]
 
 FileLengthChecker.maxFileLength = 800
+```
+
+### NoCloneChecker
+
+Flags zero-argument `clone()` methods.
+
+`.scalafix.conf`:
+
+```hocon
+rules = [
+  NoCloneChecker
+]
+```
+
+### SimplifyBooleanExpressionChecker
+
+Flags boolean expressions such as `b == true`, `b && false`, and `!true` which can be simplified.
+
+`.scalafix.conf`:
+
+```hocon
+rules = [
+  SimplifyBooleanExpressionChecker
+]
 ```
 
 ## Repository Layout

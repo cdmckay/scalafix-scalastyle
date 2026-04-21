@@ -6,3 +6,5 @@ fix.MethodLengthChecker
 fix.CyclomaticComplexityChecker
 fix.ParameterNumberChecker
 fix.FileLengthChecker
+fix.NoCloneChecker
+fix.SimplifyBooleanExpressionChecker
