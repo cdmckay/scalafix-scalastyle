@@ -4,3 +4,5 @@ fix.LowercasePatternMatchChecker
 fix.IllegalImportsChecker
 fix.MethodLengthChecker
 fix.CyclomaticComplexityChecker
+fix.ParameterNumberChecker
+fix.FileLengthChecker

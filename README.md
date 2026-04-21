@@ -32,6 +32,8 @@ Implemented rules:
 - `IllegalImportsChecker`
 - `MethodLengthChecker`
 - `CyclomaticComplexityChecker`
+- `ParameterNumberChecker`
+- `FileLengthChecker`
 
 Each implemented rule has:
 
@@ -152,6 +154,34 @@ rules = [
 
 CyclomaticComplexityChecker.maximum = 13
 CyclomaticComplexityChecker.countCases = true
+```
+
+### ParameterNumberChecker
+
+Flags methods whose parameter count exceeds a configured maximum.
+
+`.scalafix.conf`:
+
+```hocon
+rules = [
+  ParameterNumberChecker
+]
+
+ParameterNumberChecker.maxParameters = 8
+```
+
+### FileLengthChecker
+
+Flags files whose total line count exceeds a configured maximum.
+
+`.scalafix.conf`:
+
+```hocon
+rules = [
+  FileLengthChecker
+]
+
+FileLengthChecker.maxFileLength = 800
 ```
 
 ## Repository Layout
