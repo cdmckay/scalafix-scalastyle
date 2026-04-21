@@ -2,3 +2,4 @@ fix.NotImplementedErrorUsage
 fix.EmptyInterpolatedStringChecker
 fix.LowercasePatternMatchChecker
 fix.IllegalImportsChecker
+fix.MethodLengthChecker

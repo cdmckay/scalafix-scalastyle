@@ -29,6 +29,8 @@ Implemented rules:
 - `NotImplementedErrorUsage`
 - `EmptyInterpolatedStringChecker`
 - `LowercasePatternMatchChecker`
+- `IllegalImportsChecker`
+- `MethodLengthChecker`
 
 Each implemented rule has:
 
@@ -119,6 +121,22 @@ IllegalImportsChecker.illegalImports = [
 Current limitation:
 
 - `exemptImports` is not implemented yet
+
+### MethodLengthChecker
+
+Flags methods whose body length exceeds a configured maximum.
+
+`.scalafix.conf`:
+
+```hocon
+rules = [
+  MethodLengthChecker
+]
+
+MethodLengthChecker.maxLength = 50
+MethodLengthChecker.ignoreComments = false
+MethodLengthChecker.ignoreEmpty = false
+```
 
 ## Repository Layout
 
