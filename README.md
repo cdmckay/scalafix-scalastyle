@@ -40,6 +40,8 @@ Implemented rules:
 - `ObjectNamesChecker`
 - `PackageObjectNamesChecker`
 - `MethodNamesChecker`
+- `NumberOfTypesChecker`
+- `NumberOfMethodsInTypeChecker`
 
 Each implemented rule has:
 
@@ -242,6 +244,30 @@ rules = [
 MethodNamesChecker.regex = "^[a-z][A-Za-z0-9]*(_=)?$"
 MethodNamesChecker.ignoreRegex = "^$"
 MethodNamesChecker.ignoreOverride = false
+```
+
+### NumberOfTypesChecker
+
+Flags files containing more than a configured number of types.
+
+```hocon
+rules = [
+  NumberOfTypesChecker
+]
+
+NumberOfTypesChecker.maxTypes = 30
+```
+
+### NumberOfMethodsInTypeChecker
+
+Flags types containing more than a configured number of directly declared methods.
+
+```hocon
+rules = [
+  NumberOfMethodsInTypeChecker
+]
+
+NumberOfMethodsInTypeChecker.maxMethods = 30
 ```
 
 ## Repository Layout

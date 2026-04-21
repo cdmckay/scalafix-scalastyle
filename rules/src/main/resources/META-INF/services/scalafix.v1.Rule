@@ -12,3 +12,5 @@ fix.ClassNamesChecker
 fix.ObjectNamesChecker
 fix.PackageObjectNamesChecker
 fix.MethodNamesChecker
+fix.NumberOfTypesChecker
+fix.NumberOfMethodsInTypeChecker
