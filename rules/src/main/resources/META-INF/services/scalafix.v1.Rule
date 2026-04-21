@@ -1,2 +1,3 @@
 fix.NotImplementedErrorUsage
 fix.EmptyInterpolatedStringChecker
+fix.LowercasePatternMatchChecker
