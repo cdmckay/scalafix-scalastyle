@@ -3,7 +3,9 @@ package fix
 import org.scalatest.funsuite.AnyFunSuiteLike
 import scalafix.testkit.AbstractSyntacticRuleSuite
 
-class RuleSuite extends AbstractSyntacticRuleSuite with AnyFunSuiteLike {
+class NotImplementedErrorUsageSuite
+    extends AbstractSyntacticRuleSuite
+    with AnyFunSuiteLike {
   check(
     new NotImplementedErrorUsage,
     "NotImplementedErrorUsage noErrors",
