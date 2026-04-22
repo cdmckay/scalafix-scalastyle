@@ -478,6 +478,28 @@ If you want the interactive sbt shell for repeated work:
 sbt
 ```
 
+## Publishing
+
+This repo is set up for `sbt-ci-release` and Sonatype Central Portal publishing.
+
+Before the first release, you still need to do the external setup:
+
+1. Verify the `st.process` namespace in Sonatype Central Portal.
+2. Generate a Central publishing token.
+3. Generate a dedicated GPG key for signing releases.
+4. Add these GitHub Actions secrets to `process-street/scalafix-scalastyle`:
+   - `SONATYPE_USERNAME`
+   - `SONATYPE_PASSWORD`
+   - `PGP_SECRET`
+   - `PGP_PASSPHRASE`
+
+Release flow:
+
+- pushes to `main` publish unique snapshot versions
+- tags like `v0.1.0` publish a normal release
+
+The release workflow lives at [.github/workflows/release.yml](./.github/workflows/release.yml).
+
 ## How To Add A Rule
 
 The current workflow is:

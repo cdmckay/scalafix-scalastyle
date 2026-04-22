@@ -6,7 +6,6 @@ lazy val rulesCrossVersions = Seq(V.scala213, V.scala212)
 inThisBuild(
   List(
     organization := "st.process",
-    version := "0.1.0-SNAPSHOT",
     homepage := Some(url("https://github.com/process-street/scalafix-scalastyle")),
     description := "Pragmatic scalastyle-compatible syntactic rules for Scalafix",
     versionScheme := Some("early-semver"),
