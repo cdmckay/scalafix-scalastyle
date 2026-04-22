@@ -1,12 +1,29 @@
 lazy val V = _root_.scalafix.sbt.BuildInfo
 
-lazy val rulesCrossVersions = Seq(V.scala213, V.scala212)
 lazy val scala3Version = "3.3.7"
+lazy val rulesCrossVersions = Seq(V.scala213, V.scala212)
 
 inThisBuild(
   List(
-    organization := "org.cdmckay",
+    organization := "st.process",
+    version := "0.1.0-SNAPSHOT",
     homepage := Some(url("https://github.com/cdmckay/scalafix-scalastyle")),
+    description := "Pragmatic scalastyle-compatible syntactic rules for Scalafix",
+    versionScheme := Some("early-semver"),
+    scmInfo := Some(
+      ScmInfo(
+        url("https://github.com/cdmckay/scalafix-scalastyle"),
+        "scm:git@github.com:cdmckay/scalafix-scalastyle.git"
+      )
+    ),
+    developers := List(
+      Developer(
+        id = "cdmckay",
+        name = "Cameron McKay",
+        email = "me@cdmckay.org",
+        url = url("https://github.com/cdmckay")
+      )
+    ),
     licenses := List(
       "Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")
     ),
@@ -81,13 +98,13 @@ lazy val tests = projectMatrix
     settings = Seq()
   )
   .jvmPlatform(
-    scalaVersions = Seq(V.scala213),
-    axisValues = Seq(TargetAxis(V.scala213)),
+    scalaVersions = Seq(V.scala212),
+    axisValues = Seq(TargetAxis(V.scala212)),
     settings = Seq()
   )
   .jvmPlatform(
-    scalaVersions = Seq(V.scala212),
-    axisValues = Seq(TargetAxis(V.scala212)),
+    scalaVersions = Seq(V.scala213),
+    axisValues = Seq(TargetAxis(V.scala213)),
     settings = Seq()
   )
   .dependsOn(rules)

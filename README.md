@@ -56,6 +56,27 @@ Current limitation:
 - these are deliberate partial implementations, not claims of full parity
 - missing pieces can be added later, but they should be treated as known gaps until explicitly implemented and tested
 
+## Installation
+
+Once published, install the rules in your sbt build with:
+
+```scala
+ThisBuild / scalafixDependencies +=
+  "st.process" %% "scalafix-scalastyle" % "VERSION"
+```
+
+Then enable whichever rules you want in `.scalafix.conf`.
+
+For Scala 3 builds, use the Scala 2.13 artifact explicitly:
+
+```scala
+ThisBuild / scalafixDependencies +=
+  ("st.process" %% "scalafix-scalastyle" % "VERSION")
+    .cross(CrossVersion.for3Use2_13)
+```
+
+This matches the current Scalafix ecosystem pattern: the rules are published for Scala 2.12 and 2.13, and Scala 3 consumers use the 2.13 artifact.
+
 ## Implemented Rules
 
 ### NotImplementedErrorUsage
