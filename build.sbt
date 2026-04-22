@@ -7,13 +7,13 @@ inThisBuild(
   List(
     organization := "st.process",
     version := "0.1.0-SNAPSHOT",
-    homepage := Some(url("https://github.com/cdmckay/scalafix-scalastyle")),
+    homepage := Some(url("https://github.com/process-street/scalafix-scalastyle")),
     description := "Pragmatic scalastyle-compatible syntactic rules for Scalafix",
     versionScheme := Some("early-semver"),
     scmInfo := Some(
       ScmInfo(
-        url("https://github.com/cdmckay/scalafix-scalastyle"),
-        "scm:git@github.com:cdmckay/scalafix-scalastyle.git"
+        url("https://github.com/process-street/scalafix-scalastyle"),
+        "scm:git@github.com:process-street/scalafix-scalastyle.git"
       )
     ),
     developers := List(
