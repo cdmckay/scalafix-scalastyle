@@ -22,44 +22,89 @@ Concretely, the approach is:
 
 The current plan and rule categorization live in [PLAN.md](./PLAN.md).
 
-## Current Status
+## Rule Coverage
 
-Implemented rules:
+Descriptions are adapted from the Scalastyle rules reference.
 
-- `NotImplementedErrorUsage`
-- `EmptyInterpolatedStringChecker`
-- `LowercasePatternMatchChecker`
-- `IllegalImportsChecker`
-- `MethodLengthChecker`
-- `CyclomaticComplexityChecker`
-- `ParameterNumberChecker`
-- `FileLengthChecker`
-- `NoCloneChecker`
-- `SimplifyBooleanExpressionChecker`
-- `ClassNamesChecker`
-- `ObjectNamesChecker`
-- `PackageObjectNamesChecker`
-- `MethodNamesChecker`
-- `NumberOfTypesChecker`
-- `NumberOfMethodsInTypeChecker`
-- `EqualsHashCodeChecker`
-- `CovariantEqualsChecker`
-- `StructuralTypeChecker`
-- `PublicMethodsHaveTypeChecker`
-- `MagicNumberChecker`
+| Checker | Description | Status |
+| --- | --- | --- |
+| `BlockImportChecker` | Checks that block imports are not used. | planned |
+| `CaseBraceChecker` | Disallow braces around `case` clause bodies. | planned |
+| `ClassNamesChecker` | Check that class names match a regular expression. | implemented |
+| `ClassTypeParameterChecker` | Checks that type parameters to a class match a regular expression. | planned |
+| `CovariantEqualsChecker` | Check that classes and objects do not define `equals` without overriding `equals(java.lang.Object)`. | implemented |
+| `CyclomaticComplexityChecker` | Checks that the cyclomatic complexity of a method does exceed a value. | implemented |
+| `DeprecatedJavaChecker` | Checks that Java `@Deprecated` is not used; Scala `@deprecated` should be used instead. | planned |
+| `DisallowSpaceAfterTokenChecker` | Disallow space after certain tokens. | scalafmt (`spaces` formatting) |
+| `DisallowSpaceBeforeTokenChecker` | Disallow space before certain tokens. | scalafmt (`spaces` formatting) |
+| `EmptyClassChecker` | If a class or trait has no members, the braces are unnecessary. | planned |
+| `EmptyInterpolatedStringChecker` | The interpolation for this string literal is not necessary. | implemented |
+| `EnsureSingleSpaceAfterTokenChecker` | Ensure single space after certain tokens. | scalafmt (`spaces` formatting) |
+| `EnsureSingleSpaceBeforeTokenChecker` | Ensure single space before certain tokens. | scalafmt (`spaces` formatting) |
+| `EqualsHashCodeChecker` | Check that if a class implements either `equals` or `hashCode`, it should implement the other. | implemented |
+| `FieldNamesChecker` | Check that field names match a regular expression. | planned |
+| `FileLengthChecker` | Check the number of lines in a file. | implemented |
+| `FileLineLengthChecker` | Check the number of characters in a line. | scalafmt (`maxColumn`) |
+| `FileTabChecker` | Check that there are no tabs in a file. | scalafmt (`indent.main` / tab handling) |
+| `ForBraceChecker` | Checks that braces are used in `for` comprehensions. | planned |
+| `ForLoopChecker` | Check `for` loop usage. | planned |
+| `HeaderMatchesChecker` | Check the first lines of each file matches the text. | planned |
+| `IfBraceChecker` | Checks that `if` statements have braces. | scalafmt (brace rewriting / formatting) |
+| `IllegalImportsChecker` | Check that a class does not import certain classes. | implemented |
+| `ImportGroupingChecker` | Checks that imports are grouped together, not throughout the file. | scalafmt (`SortImports`) |
+| `ImportOrderChecker` | Checks that imports are grouped and ordered according to the style configuration. | scalafmt (`SortImports`) |
+| `IndentationChecker` | Checks that lines are indented by a multiple of the tab size. | scalafmt (`indent.*`) |
+| `LowercasePatternMatchChecker` | Checks that a case statement pattern match is not lower case, as this can cause confusion. | implemented |
+| `MagicNumberChecker` | Checks for use of magic numbers. | implemented |
+| `MethodArgumentNamesChecker` | Check that method argument names match a regular expression. | planned |
+| `MethodLengthChecker` | Checks that methods do not exceed a maximum length. | implemented |
+| `MethodNamesChecker` | Check that method names match a regular expression. | implemented |
+| `MultipleStringLiteralsChecker` | Checks that a string literal does not appear multiple times. | planned |
+| `NamedArgumentChecker` | Checks that argument literals are named. | planned |
+| `NewLineAtEofChecker` | Checks that a file ends with a newline character. | scalafmt (trailing newline handling) |
+| `NoCloneChecker` | Check that classes and objects do not define the `clone()` method. | implemented |
+| `NoFinalizeChecker` | Check that classes and objects do not define the `finalize()` method. | scalafix (`DisableSyntax.noFinalize`) |
+| `NoNewLineAtEofChecker` | Checks that a file does not end with a newline character. | scalafmt (trailing newline handling) |
+| `NoWhitespaceAfterLeftBracketChecker` | No whitespace after left bracket `[`. | scalafmt (bracket spacing) |
+| `NoWhitespaceBeforeLeftBracketChecker` | No whitespace before left bracket `[`. | scalafmt (bracket spacing) |
+| `NoWhitespaceBeforeRightBracketChecker` | No whitespace before right bracket `]`. | scalafmt (bracket spacing) |
+| `NonASCIICharacterChecker` | Some editors are unfriendly to non-ascii characters. | planned |
+| `NotImplementedErrorUsage` | Checks that the code does not have `???` operators. | implemented |
+| `NullChecker` | Check that `null` is not used. | scalafix (`DisableSyntax.noNulls`) |
+| `NumberOfMethodsInTypeChecker` | Check that a class, trait, or object does not have too many methods. | implemented |
+| `NumberOfTypesChecker` | Checks that there are not too many types declared in a file. | implemented |
+| `ObjectNamesChecker` | Check that object names match a regular expression. | implemented |
+| `OverrideJavaChecker` | Checks that Java `@Override` is not used. | planned |
+| `PackageNamesChecker` | Check that package names match a regular expression. | planned |
+| `PackageObjectNamesChecker` | Check that package object names match a regular expression. | implemented |
+| `ParameterNumberChecker` | Maximum number of parameters for a method. | implemented |
+| `PatternMatchAlignChecker` | Check that pattern match arrows align. | scalafmt (`align.tokens`) |
+| `ProcedureDeclarationChecker` | Use a `: Unit =` for procedure declarations. | scalafmt (`ProcedureSyntax`) |
+| `PublicMethodsHaveTypeChecker` | Check that a method has an explicit return type; it is not inferred. | implemented |
+| `RedundantIfChecker` | Checks that `if` expressions are not redundant and can be replaced by a variant of the condition. | planned |
+| `RegexChecker` | Checks that a regular expression cannot be matched; if found, reports this. | scalafix (`DisableSyntax.regex`) |
+| `ReturnChecker` | Check that `return` is not used. | scalafix (`DisableSyntax.noReturns`) |
+| `ScalaDocChecker` | Checks that the ScalaDoc on documentable members is well-formed. | planned |
+| `SimplifyBooleanExpressionChecker` | Boolean expression can be simplified. | implemented |
+| `SpaceAfterCommentStartChecker` | Checks a space after the start of the comment. | scalafmt (comment formatting) |
+| `SpacesAfterPlusChecker` | Check that the plus sign is followed by a space. | scalafmt (`spaces` formatting) |
+| `SpacesBeforePlusChecker` | Check that the plus sign is preceded by a space. | scalafmt (`spaces` formatting) |
+| `StructuralTypeChecker` | Check that structural types are not used. | implemented |
+| `TodoCommentChecker` | Check for use of TODO/FIXME single line comments. | planned |
+| `TokenChecker` | Checks that a regular expression cannot be matched in a token; if found, reports this. | scalafix (`DisableSyntax.regex`) |
+| `UnderscoreImportChecker` | Avoid wildcard imports. | planned |
+| `UppercaseLChecker` | Checks that if a long literal is used, then an uppercase `L` is used. | scalafmt (`literals.long = Upper`) |
+| `VarFieldChecker` | Checks that classes and objects do not define mutable fields. | scalafix (`DisableSyntax.noVars`) |
+| `VarLocalChecker` | Checks that functions do not define mutable variables. | scalafix (`DisableSyntax.noVars`) |
+| `WhileBraceChecker` | Checks that `while` statements use braces. | planned |
+| `WhileChecker` | Checks that `while` is not used. | scalafix (`DisableSyntax.noWhileLoops`) |
+| `XmlLiteralChecker` | Check that XML literals are not used. | scalafix (`DisableSyntax.noXml`) |
 
-Each implemented rule has:
+Notes:
 
-- one rule file under `rules/src/main/scala/fix/`
-- one rule-specific test suite under `tests/src/test/scala/fix/`
-- registration in `rules/src/main/resources/META-INF/services/scalafix.v1.Rule`
-
-Current limitation:
-
-- some implemented rules currently cover only the subset of upstream scalastyle behavior that was needed immediately for migration
-- for example, `IllegalImportsChecker` currently implements forbidden-import matching but not the full upstream `exemptImports` feature set
-- these are deliberate partial implementations, not claims of full parity
-- missing pieces can be added later, but they should be treated as known gaps until explicitly implemented and tested
+- `implemented` means the rule lives in this repo and has migrated tests.
+- `planned` means the rule is still intended for this repo but has not been implemented yet.
+- `IllegalImportsChecker` is currently partial: it supports `illegalImports`, but not upstream `exemptImports`.
 
 ## Installation
 
@@ -84,14 +129,39 @@ This matches the current Scalafix ecosystem pattern: the rules are published for
 
 ## Implemented Rules
 
-### NotImplementedErrorUsage
+### ClassNamesChecker
 
-Flags `???` placeholders.
+Flags class names that do not match a configured regex.
 
 ```hocon
 rules = [
-  NotImplementedErrorUsage
+  ClassNamesChecker
 ]
+
+ClassNamesChecker.regex = "^[A-Z][A-Za-z]*$"
+```
+
+### CovariantEqualsChecker
+
+Flags types that define a covariant `equals` method without also defining `equals(Object)` or `equals(Any)`.
+
+```hocon
+rules = [
+  CovariantEqualsChecker
+]
+```
+
+### CyclomaticComplexityChecker
+
+Flags methods whose cyclomatic complexity exceeds a configured maximum.
+
+```hocon
+rules = [
+  CyclomaticComplexityChecker
+]
+
+CyclomaticComplexityChecker.maximum = 13
+CyclomaticComplexityChecker.countCases = true
 ```
 
 ### EmptyInterpolatedStringChecker
@@ -116,20 +186,26 @@ rules = [
 ]
 ```
 
-### LowercasePatternMatchChecker
+### EqualsHashCodeChecker
 
-Flags simple lowercase pattern matches such as `case lc => ...`, where the intent is often a stable identifier match that should have been written with backticks.
-
-Examples that are allowed:
-
-- ``case `lc` => ...``
-- `case s: Int => ...`
-- `case List(x, y) => ...`
+Flags types that define `equals` without `hashCode`, or `hashCode` without `equals`.
 
 ```hocon
 rules = [
-  LowercasePatternMatchChecker
+  EqualsHashCodeChecker
 ]
+```
+
+### FileLengthChecker
+
+Flags files whose total line count exceeds a configured maximum.
+
+```hocon
+rules = [
+  FileLengthChecker
+]
+
+FileLengthChecker.maxFileLength = 800
 ```
 
 ### IllegalImportsChecker
@@ -151,6 +227,34 @@ Current limitation:
 
 - `exemptImports` is not implemented yet
 
+### LowercasePatternMatchChecker
+
+Flags simple lowercase pattern matches such as `case lc => ...`, where the intent is often a stable identifier match that should have been written with backticks.
+
+Examples that are allowed:
+
+- ``case `lc` => ...``
+- `case s: Int => ...`
+- `case List(x, y) => ...`
+
+```hocon
+rules = [
+  LowercasePatternMatchChecker
+]
+```
+
+### MagicNumberChecker
+
+Flags numeric literals that are not in the configured ignore list and are not introduced as constant `val`s.
+
+```hocon
+rules = [
+  MagicNumberChecker
+]
+
+MagicNumberChecker.ignore = "-1,0,1,2,3"
+```
+
 ### MethodLengthChecker
 
 Flags methods whose body length exceeds a configured maximum.
@@ -165,41 +269,18 @@ MethodLengthChecker.ignoreComments = false
 MethodLengthChecker.ignoreEmpty = false
 ```
 
-### CyclomaticComplexityChecker
+### MethodNamesChecker
 
-Flags methods whose cyclomatic complexity exceeds a configured maximum.
-
-```hocon
-rules = [
-  CyclomaticComplexityChecker
-]
-
-CyclomaticComplexityChecker.maximum = 13
-CyclomaticComplexityChecker.countCases = true
-```
-
-### ParameterNumberChecker
-
-Flags methods whose parameter count exceeds a configured maximum.
+Flags method names that do not match a configured regex.
 
 ```hocon
 rules = [
-  ParameterNumberChecker
+  MethodNamesChecker
 ]
 
-ParameterNumberChecker.maxParameters = 8
-```
-
-### FileLengthChecker
-
-Flags files whose total line count exceeds a configured maximum.
-
-```hocon
-rules = [
-  FileLengthChecker
-]
-
-FileLengthChecker.maxFileLength = 800
+MethodNamesChecker.regex = "^[a-z][A-Za-z0-9]*(_=)?$"
+MethodNamesChecker.ignoreRegex = "^$"
+MethodNamesChecker.ignoreOverride = false
 ```
 
 ### NoCloneChecker
@@ -212,26 +293,38 @@ rules = [
 ]
 ```
 
-### SimplifyBooleanExpressionChecker
+### NotImplementedErrorUsage
 
-Flags boolean expressions such as `b == true`, `b && false`, and `!true` which can be simplified.
+Flags `???` placeholders.
 
 ```hocon
 rules = [
-  SimplifyBooleanExpressionChecker
+  NotImplementedErrorUsage
 ]
 ```
 
-### ClassNamesChecker
+### NumberOfMethodsInTypeChecker
 
-Flags class names that do not match a configured regex.
+Flags types containing more than a configured number of directly declared methods.
 
 ```hocon
 rules = [
-  ClassNamesChecker
+  NumberOfMethodsInTypeChecker
 ]
 
-ClassNamesChecker.regex = "^[A-Z][A-Za-z]*$"
+NumberOfMethodsInTypeChecker.maxMethods = 30
+```
+
+### NumberOfTypesChecker
+
+Flags files containing more than a configured number of types.
+
+```hocon
+rules = [
+  NumberOfTypesChecker
+]
+
+NumberOfTypesChecker.maxTypes = 30
 ```
 
 ### ObjectNamesChecker
@@ -258,72 +351,16 @@ rules = [
 PackageObjectNamesChecker.regex = "^[a-z][A-Za-z]*$"
 ```
 
-### MethodNamesChecker
+### ParameterNumberChecker
 
-Flags method names that do not match a configured regex.
-
-```hocon
-rules = [
-  MethodNamesChecker
-]
-
-MethodNamesChecker.regex = "^[a-z][A-Za-z0-9]*(_=)?$"
-MethodNamesChecker.ignoreRegex = "^$"
-MethodNamesChecker.ignoreOverride = false
-```
-
-### NumberOfTypesChecker
-
-Flags files containing more than a configured number of types.
+Flags methods whose parameter count exceeds a configured maximum.
 
 ```hocon
 rules = [
-  NumberOfTypesChecker
+  ParameterNumberChecker
 ]
 
-NumberOfTypesChecker.maxTypes = 30
-```
-
-### NumberOfMethodsInTypeChecker
-
-Flags types containing more than a configured number of directly declared methods.
-
-```hocon
-rules = [
-  NumberOfMethodsInTypeChecker
-]
-
-NumberOfMethodsInTypeChecker.maxMethods = 30
-```
-
-### EqualsHashCodeChecker
-
-Flags types that define `equals` without `hashCode`, or `hashCode` without `equals`.
-
-```hocon
-rules = [
-  EqualsHashCodeChecker
-]
-```
-
-### CovariantEqualsChecker
-
-Flags types that define a covariant `equals` method without also defining `equals(Object)` or `equals(Any)`.
-
-```hocon
-rules = [
-  CovariantEqualsChecker
-]
-```
-
-### StructuralTypeChecker
-
-Flags structural types such as `AnyRef { def close(): Unit }`.
-
-```hocon
-rules = [
-  StructuralTypeChecker
-]
+ParameterNumberChecker.maxParameters = 8
 ```
 
 ### PublicMethodsHaveTypeChecker
@@ -338,16 +375,24 @@ rules = [
 PublicMethodsHaveTypeChecker.ignoreOverride = false
 ```
 
-### MagicNumberChecker
+### SimplifyBooleanExpressionChecker
 
-Flags numeric literals that are not in the configured ignore list and are not introduced as constant `val`s.
+Flags boolean expressions such as `b == true`, `b && false`, and `!true` which can be simplified.
 
 ```hocon
 rules = [
-  MagicNumberChecker
+  SimplifyBooleanExpressionChecker
 ]
+```
 
-MagicNumberChecker.ignore = "-1,0,1,2,3"
+### StructuralTypeChecker
+
+Flags structural types such as `AnyRef { def close(): Unit }`.
+
+```hocon
+rules = [
+  StructuralTypeChecker
+]
 ```
 
 ## Repository Layout
