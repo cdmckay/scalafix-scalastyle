@@ -42,6 +42,11 @@ Implemented rules:
 - `MethodNamesChecker`
 - `NumberOfTypesChecker`
 - `NumberOfMethodsInTypeChecker`
+- `EqualsHashCodeChecker`
+- `CovariantEqualsChecker`
+- `StructuralTypeChecker`
+- `PublicMethodsHaveTypeChecker`
+- `MagicNumberChecker`
 
 Each implemented rule has:
 
@@ -289,6 +294,60 @@ rules = [
 ]
 
 NumberOfMethodsInTypeChecker.maxMethods = 30
+```
+
+### EqualsHashCodeChecker
+
+Flags types that define `equals` without `hashCode`, or `hashCode` without `equals`.
+
+```hocon
+rules = [
+  EqualsHashCodeChecker
+]
+```
+
+### CovariantEqualsChecker
+
+Flags types that define a covariant `equals` method without also defining `equals(Object)` or `equals(Any)`.
+
+```hocon
+rules = [
+  CovariantEqualsChecker
+]
+```
+
+### StructuralTypeChecker
+
+Flags structural types such as `AnyRef { def close(): Unit }`.
+
+```hocon
+rules = [
+  StructuralTypeChecker
+]
+```
+
+### PublicMethodsHaveTypeChecker
+
+Flags public methods without an explicit return type.
+
+```hocon
+rules = [
+  PublicMethodsHaveTypeChecker
+]
+
+PublicMethodsHaveTypeChecker.ignoreOverride = false
+```
+
+### MagicNumberChecker
+
+Flags numeric literals that are not in the configured ignore list and are not introduced as constant `val`s.
+
+```hocon
+rules = [
+  MagicNumberChecker
+]
+
+MagicNumberChecker.ignore = "-1,0,1,2,3"
 ```
 
 ## Repository Layout
