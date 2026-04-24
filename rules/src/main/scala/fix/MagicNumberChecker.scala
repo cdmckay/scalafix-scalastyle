@@ -37,7 +37,7 @@ class MagicNumberChecker(config: MagicNumberCheckerConfig)
 
   override def fix(implicit doc: SyntacticDocument): Patch = {
     val ignored = config.ignore.split(",").map(_.trim).filter(_.nonEmpty).toSet
-    val excluded = MagicNumberChecker.excludedValPositions(doc.tree)
+    val excluded = MagicNumberChecker.excludedPositions(doc.tree)
 
     MagicNumberChecker
       .numericExpressions(doc.tree)
@@ -76,20 +76,26 @@ object MagicNumberChecker {
     unary ::: literals
   }
 
-  private[fix] def excludedValPositions(tree: Tree): List[Position] =
-    tree.collect {
-      case value: Defn.Val =>
-        rhsNumericPosition(value.rhs)
+  private[fix] def excludedPositions(tree: Tree): List[Position] = {
+    val subtrees: List[Tree] = tree.collect {
+      case defn: Defn.Val => List(defn.rhs)
+      case param: Term.Param => param.default.toList
     }.flatten
 
-  private def rhsNumericPosition(rhs: Term): Option[Position] = rhs match {
-    case _: Lit.Int | _: Lit.Long =>
-      Some(rhs.pos)
-    case expr @ Term.ApplyUnary(Term.Name(op), arg)
-        if Set("+", "-").contains(op) && toLiteralText(arg).isDefined =>
-      Some(expr.pos)
-    case _ =>
-      None
+    subtrees.flatMap(collectLiteralPositions)
+  }
+
+  private def collectLiteralPositions(subtree: Tree): List[Position] = {
+    val unary = subtree.collect {
+      case expr @ Term.ApplyUnary(Term.Name(op), arg)
+          if Set("+", "-").contains(op) && toLiteralText(arg).isDefined =>
+        expr.pos
+    }
+    val literals = subtree.collect {
+      case lit: Lit.Int => lit.pos
+      case lit: Lit.Long => lit.pos
+    }
+    unary ::: literals
   }
 
   private def toLiteralText(tree: Tree): Option[String] = tree match {

@@ -123,4 +123,58 @@ class MagicNumberCheckerSuite
       |}
       |""".stripMargin
   )
+
+  check(
+    new MagicNumberChecker,
+    "MagicNumberChecker literals inside val rhs are not magic",
+    """
+      |package foobar
+      |
+      |class Foobar {
+      |  val a = 7.days
+      |  val b = 1024 * 1024 * 100
+      |  val c = 64 * 1024
+      |  val d = fn(7, -5)
+      |  val e = new DateTime(2025, 8, 1, 0, 0, 0)
+      |
+      |  def fn(i: Int, j: Int) = i + j
+      |  class DateTime(a: Int, b: Int, c: Int, d: Int, e: Int, f: Int)
+      |}
+      |""".stripMargin,
+    """
+      |package foobar
+      |
+      |class Foobar {
+      |  val a = 7.days
+      |  val b = 1024 * 1024 * 100
+      |  val c = 64 * 1024
+      |  val d = fn(7, -5)
+      |  val e = new DateTime(2025, 8, 1, 0, 0, 0)
+      |
+      |  def fn(i: Int, j: Int) = i + j
+      |  class DateTime(a: Int, b: Int, c: Int, d: Int, e: Int, f: Int)
+      |}
+      |""".stripMargin
+  )
+
+  check(
+    new MagicNumberChecker,
+    "MagicNumberChecker default parameter values are not magic",
+    """
+      |package foobar
+      |
+      |class Foobar {
+      |  def create(pageSize: Int = 20) = pageSize
+      |  def process(timeout: Int = 30) = timeout
+      |}
+      |""".stripMargin,
+    """
+      |package foobar
+      |
+      |class Foobar {
+      |  def create(pageSize: Int = 20) = pageSize
+      |  def process(timeout: Int = 30) = timeout
+      |}
+      |""".stripMargin
+  )
 }

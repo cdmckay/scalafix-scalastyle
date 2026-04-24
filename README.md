@@ -245,7 +245,7 @@ rules = [
 
 ### MagicNumberChecker
 
-Flags numeric literals that are not in the configured ignore list and are not introduced as constant `val`s.
+Flags numeric literals that are not in the configured ignore list. Literals anywhere inside a `val` right-hand side — including arithmetic, method chains, constructor arguments, and function calls — are treated as named constants and are not flagged. The same exemption applies to default parameter values.
 
 ```hocon
 rules = [
